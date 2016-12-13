@@ -9,7 +9,7 @@ end freq_div;
 
 architecture behave of freq_div is			-- architecture body
 	signal temp : std_logic :='0';			-- output
-	signal max_value : integer := 500;  	-- max number = 75000
+	signal max_value : integer := 7500;  	-- max number = 75000
 	signal counter : integer range 0 to max_value := 0;
 begin
    process(CLK)									-- process clock

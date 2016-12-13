@@ -20,13 +20,13 @@ begin
 						outputs1 <= inputs1;		-- output 2nd digit	
 						outputs2 <= inputs2;		-- output 3rd digit
 						outputs3 <= inputs3;		-- output 4th digit
-						dots <= "0001";
+						dots <= "1110";
 					else						  -- it has number in 3 MSB digit.
 						outputs0 <= "1011"; -- output = 11 => "r"
 						outputs1 <= "1011"; -- output = 11 => "r"
 						outputs2 <= "1010"; -- output = 10 => "E"
 						outputs3 <= "1111"; -- output = 15 => blank
-						dots <= "0000";	  -- not dot output
+						dots <= "1111";	  -- not dot output
 					end if;
 				elsif (sw = "01") then	-- detect switch is 01 ?
 					if (inputs5 = "0000" and inputs6 = "0000") then		-- it has number in 2 MSB digit.
@@ -34,13 +34,13 @@ begin
 						outputs1 <= inputs2;		-- output 3rd digit
 						outputs2 <= inputs3;		-- output 4th digit
 						outputs3 <= inputs4;		-- output 5th digit
-						dots <= "0010";			-- dot output  => 2nd dot
+						dots <= "1101";			-- dot output  => 2nd dot
 					else						  -- it has number in 3 MSB digit.
 						outputs0 <= "1011"; -- output = 11 => "r"
 						outputs1 <= "1011"; -- output = 11 => "r"
 						outputs2 <= "1010"; -- output = 10 => "E"
 						outputs3 <= "1111"; -- output = 15 => blank
-						dots <= "0000";	  -- not dot output
+						dots <= "1111";	  -- not dot output
 					end if;
 				elsif (sw = "10") then	-- detect switch is 10 ?
 					if (inputs6 = "0000") then	-- it has number in 1 MSB digit.
@@ -48,20 +48,20 @@ begin
 						outputs1 <= inputs3;		-- output 4th digit
 						outputs2 <= inputs4;		-- output 5th digit
 						outputs3 <= inputs5;		-- output 6th digit
-						dots <= "0100";			-- dot output => 3rd dot
+						dots <= "1011";			-- dot output => 3rd dot
 					else						  -- it has number in 3 MSB digit.
 						outputs0 <= "1011"; -- output = 11 => "r"
 						outputs1 <= "1011"; -- output = 11 => "r"
 						outputs2 <= "1010"; -- output = 10 => "E"
 						outputs3 <= "1111"; -- output = 15 => blank
-						dots <= "0000";	  -- not dot output
+						dots <= "1111";	  -- not dot output
 					end if;
 				elsif (sw = "11") then	-- detect switch is 11 ?
 					outputs0 <= inputs3;		-- output 4th digit
 					outputs1 <= inputs4;		-- output 5th digit
 					outputs2 <= inputs5;		-- output 6th digit
 					outputs3 <= inputs6;		-- output 7th digit
-					dots <= "1000";			-- dot output 4th dot
+					dots <= "0111";			-- dot output 4th dot
 				end if;
 			end if;
 	end process;

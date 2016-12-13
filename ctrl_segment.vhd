@@ -10,5 +10,5 @@ end ctrl_segment;
 architecture behave of ctrl_segment is						-- architecture body
 	begin
 		SEL <= '1' when SCLK = '1' else '0';				-- control select channel of mux part
-		dg <= "10" when SCLK = '0' else "01";				-- control bit of 7 segment part
+		dg <= "10" when SCLK = '1' else "01";				-- control bit of 7 segment part
 end behave;

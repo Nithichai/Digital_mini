@@ -6,7 +6,7 @@ entity miniproject_digi is
 			SW : in std_logic_vector(1 downto 0);
 			Seg0, Seg1, Seg2 : out std_logic_vector(6 downto 0);
 			dgCtrl : out std_logic_vector(1 downto 0);
-			DOTS 	 : out std_logic_vector(3 downto 0)
+			DOTS 	 : out std_logic_vector(2 downto 0)
 	);
 end miniproject_digi;
 
@@ -58,6 +58,12 @@ component ctrl_segment is
 		  dg   : out std_logic_vector(1 downto 0));
 end component;
 
+component mux_dot is			
+	port (DOT_IN : in  std_logic_vector(3 downto 0);
+			S      : in  std_logic;
+			O      : out std_logic_vector(2 downto 0));
+end component;
+
 
 signal one_clk  : std_logic;
 signal Channel0 : std_logic_vector(3 downto 0);
@@ -72,6 +78,8 @@ signal C_out1   : std_logic_vector(6 downto 0);
 signal SelFromCtrl : std_logic;
 signal fromMUX  : std_logic_vector(3 downto 0);
 signal sclkFromFreqDiv : std_logic;
+
+signal dot_signal : std_logic_vector(3 downto 0);
 
 signal BCD0, BCD1, BCD2, BCD3 : std_logic_vector(3 downto 0);
 
@@ -93,7 +101,7 @@ begin
 	U7 : fixfreq
 	   port map(one_clk, Clocks, C_out1(5), Reset, C_out1(6), Channel6);
 	U8 : select_channel
-		port map(Channel0, Channel1, Channel2, Channel3, Channel4, Channel5, Channel6, SW, DOTS, Clocks, BCD0, BCD1, BCD2, BCD3);
+		port map(Channel0, Channel1, Channel2, Channel3, Channel4, Channel5, Channel6, SW, dot_signal, Clocks, BCD0, BCD1, BCD2, BCD3);
 	U9 : mux_8_to_4
 		port map(BCD0, BCD1, SelFromCtrl, fromMUX);
 	U10 : freq_div
@@ -106,5 +114,7 @@ begin
 		port map(BCD2, Seg1);
 	U14 : bcd_to_7_seg
 		port map(BCD3, Seg2);
+	U15 : mux_dot
+		port map(dot_signal, SelFromCtrl, DOTS);
 		
 end behavioral;

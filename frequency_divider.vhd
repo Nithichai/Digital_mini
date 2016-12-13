@@ -8,7 +8,7 @@ end frequency_divider;
 
 architecture behavioral of frequency_divider is		-- architecture body
    signal temp : std_logic :='0';			-- output
-	signal max_value : integer := 500;  	-- max number = 25000000
+	signal max_value : integer := 25000000;  	-- max number = 25000000
 	signal counter : integer range 0 to max_value := 0;
 begin
    process(clk)									-- process clock
